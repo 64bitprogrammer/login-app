@@ -24,11 +24,61 @@ switch($data['operation']){
         createUser();
         break;
     
+    case 'reset-password':
+        resetPassword();
+        break;
+    
     default:
         $response['status'] = 'error';
         $response['msg'] = 'Invalid operation';
+        echo json_encode($response);
+        exit;
 }
 
+function resetPassword(){
+
+    global $data;
+    $otp = $data['otp'];
+    $password = $data['password'];
+    $email = $data['email'];
+
+    if(!checkEmailAlreadyExists($email)){
+        $response['status'] = 'error';
+        $response['msg'] = 'invalid email';
+        echo json_encode($response);
+        exit;
+    }
+
+    if($otp !== '1111'){
+        $response['status'] = 'error';
+        $response['msg'] = 'invalid otp';
+        echo json_encode($response);
+        exit;
+    }
+    
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    $q = "
+        UPDATE users
+        set password = ?
+        WHERE email = ?
+        LIMIT 1
+    ";
+    $params = [ $hashed_password, $email] ;
+
+    $result = runQuery($q, $params);
+
+    if($result > 0){
+        $response['status'] = 'success';
+        $response['msg'] = 'password updated successfully ';
+    }
+    else{
+        $response['status'] = 'error';
+        $response['msg'] = 'cannot update password - ' . $result . json_encode($params);
+    }
+    echo json_encode($response);
+    exit;
+}
 
 
 function createUser(){

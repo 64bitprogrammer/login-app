@@ -23,7 +23,8 @@ require_once 'includes/session_check.php';
 
     <div class='row'>
         <div class='col-md-2'>
-            <a href='products.php'>Products</a>
+            <a href='products.php'>Products</a><br/>
+            <a href='logout.php'>Logout</a>
         </div>
         <div class='col-md-8'>
 
