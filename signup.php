@@ -83,6 +83,10 @@
 
         const result = JSON.parse(response);
         alert(result.status + " " + result.msg );
+
+        if(result.status=='success'){
+            window.location.href = 'index.php';
+        }
     }
 
 </script>
