@@ -1,21 +1,26 @@
 async function postRequest(array, scriptUrl) {
     try {
+        const formBody = new URLSearchParams();
+        for (const key in array) {
+            formBody.append(`data[${key}]`, array[key]); // pass as arr[name], arr[email], etc.
+        }
+
         const response = await fetch(scriptUrl, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: JSON.stringify({ data: array }) // sending array inside an object for structure
+            body: formBody.toString()
         });
 
         if (!response.ok) {
             throw new Error(`Server responded with status ${response.status}`);
         }
 
-        const jsonResponse = await response.json(); // parse JSON response
-        return JSON.stringify(jsonResponse); // return as JSON string
+        const responseText = await response.text(); 
+        return responseText;
     } catch (error) {
         console.error('Error during AJAX call:', error);
-        throw error; // rethrow error to be handled by caller
+        throw error;
     }
 }

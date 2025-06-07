@@ -8,6 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
 </head>
 <body>
 
@@ -18,28 +19,28 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             
-            <form method='post'>
+            <form method='post' onsubmit='return submitForm()' id='signup-form'>
                 <div class="container" style='margin-top:10%;'>
                     <h3> sign-up </h3>
                     <div class="row">
                         <div class="col-md-12">
                             <div class='form-group'>
-                                <input class='form-control' id='name' name='name' placeholder='Name' />
+                                <input type='text' class='form-control' id='name' value='abc' name='name' placeholder='Name' required/>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class='form-group'>
-                                <input class='form-control' id='email' name='email' placeholder='Email' />
+                                <input  type='email' class='form-control' id='email' value='admin@abc.com' name='email' placeholder='Email' required/>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class='form-group'>
-                                <input class='form-control' id='password' name='password' placeholder='Password' />
+                                <input  type='password' class='form-control' id='password' value='admin' name='password' placeholder='Password' required/>
                             </div>
                         </div>
                         
                         <div class="col-md-12">
-                            <a class='btn btn-primary' href='signup.php'> Sign-up </a>
+                            <button class='btn btn-primary' type='submit'> Sign-up </a>
                         </div>
 
                         <div class="col-md-12">
@@ -55,5 +56,35 @@
 
 </div>
 
+<script> 
+
+    const txtName = document.getElementById('name');
+    const txtEmail = document.getElementById('email');
+    const pwdPassword = document.getElementById('password');
+
+    function submitForm(){
+
+// validate here
+
+        postForm();
+
+        return false;
+    }
+
+    async function postForm(){
+
+        const data = {
+            name: txtName.value,
+            email:txtEmail.value,
+            password: pwdPassword.value
+        };
+        console.log(data);
+        const response = await postRequest(data, 'ajax/ajax_signup.php');
+
+        const result = JSON.parse(response);
+        alert(result.status + " " + result.msg );
+    }
+
+</script>
 </body>
 </html>
