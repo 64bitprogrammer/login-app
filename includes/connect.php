@@ -48,5 +48,12 @@ function runQuery($query, $params){
     mysqli_stmt_execute($stmt);
 
     $result = mysqli_stmt_get_result($stmt);
-    return $result;
+    
+    if ($result !== false) {
+        // SELECT query: return result object
+        return $result;
+    } else {
+        // Non-SELECT query: return number of affected rows
+        return mysqli_stmt_affected_rows($stmt);
+    }
 }
