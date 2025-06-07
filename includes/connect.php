@@ -17,3 +17,36 @@ $conn = mysqli_connect(SERVER, USERNAME, PASSWORD, DATABASE);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+
+function runQuery($query, $params){
+    global $conn;
+    
+        $stmt = mysqli_prepare($conn, $query);
+    if (!$stmt) {
+        die("Prepare failed: " . mysqli_error($conn));
+    }
+
+    if (!empty($params)) {
+        // Dynamically build the types string (e.g., 'ssi')
+        $types = '';
+        foreach ($params as $param) {
+            if (is_int($param)) {
+                $types .= 'i';
+            } elseif (is_float($param)) {
+                $types .= 'd';
+            } elseif (is_string($param)) {
+                $types .= 's';
+            } else {
+                $types .= 'b'; // blob or unknown
+            }
+        }
+
+        // Bind parameters
+        mysqli_stmt_bind_param($stmt, $types, ...$params);
+    }
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+    return $result;
+}

@@ -1,29 +1,44 @@
 <?php
-// Set header to indicate JSON response
-header('Content-Type: application/json');
+require_once '../includes/connect.php';
 
-// Get the raw POST data
-$rawInput = file_get_contents("php://input");
+$response['status'] = 'NA';
+$data = $_POST['data'];
 
-// Decode JSON to PHP array
-$data = json_decode($rawInput, true);
+$email = $data['email'];
+$password = $data['password'];
 
-// Check for decoding errors or missing data
-if (json_last_error() !== JSON_ERROR_NONE || !isset($data['data'])) {
-    http_response_code(400);
-    echo json_encode(["error" => "Invalid JSON or missing 'data' field"]);
+$q = "
+    SELECT *
+    FROM users
+    WHERE email = ?
+";
+$params = [$email];
+
+$result = runQuery($q, $params);
+
+if(mysqli_num_rows($result) == 0){
+    $response['status'] = 'error';
+    $response['msg'] = 'email or password incorrect';
+    echo json_encode($response);
     exit;
 }
 
-// Access the array sent from JavaScript
-$array = $data['data'];
+$row = mysqli_fetch_assoc($result);
 
-// Example: respond with the count and original array
-$response = [
-    "received_count" => count($array),
-    "original_data" => $array,
-    "message" => "Data processed successfully"
-];
+if(password_verify($password,$row['password'] )){
+    $response['status'] = 'success';
+    $response['msg'] = 'login success';
+    
+    $_SESSION['user_id'] = $row['id'];
+    $_SESSION['user_email'] = $row['email'];
 
-// Send JSON response
-echo json_encode($response);
+    echo json_encode($response);
+    exit;
+}
+else{
+    $response['status'] = 'error';
+    $response['msg'] = 'email or password incorrect';
+    echo json_encode($response);
+    exit;
+}
+

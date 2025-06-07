@@ -27,12 +27,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class='form-group'>
-                                <input class='form-control' type='email' required id='email' name='email' placeholder='Email' />
+                                <input class='form-control' value='admin@abc.com' type='email' required id='email' name='email' placeholder='Email' />
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class='form-group'>
-                                <input class='form-control' type='password' id='password' name='password' placeholder='Password' />
+                                <input class='form-control' value='admin' type='password' id='password' name='password' placeholder='Password' />
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -56,21 +56,35 @@
 </div>
 
 <script>
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+
      function submitForm(){
 
+        const data = {
+            'email': email.value,
+            'password': password.value
+        };
         // validate here
-
-        postForm([]);    
+        postForm(data);
 
         // always false
         return false;
     }
 
-    async function postForm(dataArr){
+    async function postForm(data){
 
-        const data = await postRequest([],'ajax/ajax_login.php');
+        const result = await postRequest(data,'ajax/ajax_login.php');
 
-        console.log(data);
+        const response = JSON.parse(result);
+
+        if(response.status == 'success'){
+            alert(response.msg);
+            window.location.href = 'users.php';
+        }
+        else{
+            alert(response.status + ': ' +response.msg);
+        }
     }
 </script>
 
