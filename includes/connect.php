@@ -1,9 +1,9 @@
 <?php
 
-session_name("login-app-v1");
-if (session_status() === PHP_SESSION_NONE) {
+// session_name("login-app-v1");
+// if (session_status() === PHP_SESSION_NONE) {
     session_start();
-}
+// }
 
 define('SERVER','localhost');
 define('USERNAME','root');

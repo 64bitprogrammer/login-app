@@ -65,17 +65,17 @@ require_once 'includes/session_check.php';
                     <div class='row'>
                         <div class='col-md-12'>
                             <div class='form-group'>
-                                <input class='form-control' id='name' id='name' type='text'/>
+                                <input class='form-control' placeholder="name" id='name' id='name' type='text'/>
                             </div>
                         </div>
                         <div class='col-md-12'>
                             <div class='form-group'>
-                                <input class='form-control' id='description' id='description' type='text'/>
+                                <input class='form-control' placeholder="description"  id='description' id='description' type='text'/>
                             </div>
                         </div>
                         <div class='col-md-12'>
                             <div class='form-group'>
-                                <input class='form-control' id='price' id='price' type='price'/>
+                                <input class='form-control'  placeholder="price" id='price' id='price' type='price'/>
                             </div>
                         </div>
                         <div class='col-md-12'>
@@ -111,17 +111,17 @@ require_once 'includes/session_check.php';
                     <div class='row'>
                         <div class='col-md-12'>
                             <div class='form-group'>
-                                <input class='form-control' id='new_name' id='new_name' type='text' placeholder="product name"/>
+                                <input class='form-control' placeholder="name"  id='new_name' id='new_name' type='text' placeholder="product name"/>
                             </div>
                         </div>
                         <div class='col-md-12'>
                             <div class='form-group'>
-                                <input class='form-control' id='new_description' id='new_description' type='text' placeholder="product description"/>
+                                <input class='form-control' placeholder="description"  id='new_description' id='new_description' type='text' placeholder="product description"/>
                             </div>
                         </div>
                         <div class='col-md-12'>
                             <div class='form-group'>
-                                <input class='form-control' id='new_price' id='new_price' type='price' placeholder="price"/>
+                                <input class='form-control' placeholder="price"   id='new_price' id='new_price' type='price' placeholder="price"/>
                             </div>
                         </div>
                         <div class='col-md-12'>

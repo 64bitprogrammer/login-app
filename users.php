@@ -64,17 +64,17 @@ require_once 'includes/session_check.php';
                     <div class='row'>
                         <div class='col-md-12'>
                             <div class='form-group'>
-                                <input class='form-control' id='name' id='name' type='text'/>
+                                <input class='form-control' placeholder="name" id='name' id='name' type='text'/>
                             </div>
                         </div>
                         <div class='col-md-12'>
                             <div class='form-group'>
-                                <input class='form-control' id='email' id='email' type='text'/>
+                                <input class='form-control' placeholder="email" id='email' id='email' type='text'/>
                             </div>
                         </div>
                         <div class='col-md-12'>
                             <div class='form-group'>
-                                <input class='form-control' id='password' id='password' type='password'/>
+                                <input class='form-control' placeholder="password" id='password' id='password' type='password'/>
                             </div>
                         </div>
                         <div class='col-md-12'>
@@ -110,17 +110,17 @@ require_once 'includes/session_check.php';
                     <div class='row'>
                         <div class='col-md-12'>
                             <div class='form-group'>
-                                <input class='form-control' id='new_name' id='new_name' type='text'/>
+                                <input class='form-control' placeholder="name" id='new_name' id='new_name' type='text'/>
                             </div>
                         </div>
                         <div class='col-md-12'>
                             <div class='form-group'>
-                                <input class='form-control' id='new_email' id='new_email' type='text'/>
+                                <input class='form-control' placeholder="email" id='new_email' id='new_email' type='text'/>
                             </div>
                         </div>
                         <div class='col-md-12'>
                             <div class='form-group'>
-                                <input class='form-control' id='new_password' id='new_password' type='password'/>
+                                <input class='form-control' placeholder="password" id='new_password' id='new_password' type='password'/>
                             </div>
                         </div>
                         <div class='col-md-12'>

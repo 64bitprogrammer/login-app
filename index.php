@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class='form-group'>
-                                <input class='form-control' value='admin' type='password' id='password' name='password' placeholder='Password' />
+                                <input class='form-control' required value='admin321' type='password' id='password' name='password' placeholder='Password' />
                             </div>
                         </div>
                         <div class="col-md-12">
